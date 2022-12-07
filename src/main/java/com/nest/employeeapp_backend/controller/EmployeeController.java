@@ -29,9 +29,13 @@ public class EmployeeController {
         dao.save(e);
         return "Employee Added Successfully";
     }
+    @CrossOrigin(origins = "*")
     @PostMapping("/search")
-    public  String EmployeeSearchpage(){
-        return  "Welcome to the search page";
+    public  List<Employee> EmployeeSearchpage(@RequestBody Employee e){
+        String empcode=String.valueOf(e.getEmpcode());
+        System.out.println(empcode);
+        return (List<Employee>) dao.SearchEmployee(e.getEmpcode());
+
     }
     @PostMapping("/edit")
     public  String EmployeeEditpage(){
